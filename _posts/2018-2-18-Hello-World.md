@@ -5,4 +5,4 @@ title: First Post!
 
 Just testing the waters.
 
-This is my personal blog where I would be writing about anything related to computers, ranging from machine learning to reverse engineering. See you soon. :) 
+Hey guys, this is my personal blog where I would be writing about anything related to computers, ranging from web development  to machine learning. See you soon. :) 
