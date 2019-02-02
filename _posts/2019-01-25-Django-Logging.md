@@ -1,3 +1,8 @@
+---
+layout: post
+title: Notes on Django logging
+---
+
 This is a short article about django(drf) logging. This are basically what i figureed out while working on a project.
 
 Before you read this, read about [python logging](https://medium.com/@imnmfotmal/logging-in-python-for-library-6e13b37b1930). In a production system dont use files for logging, it will slow down your system, use either syslog, of elk stack or something.
