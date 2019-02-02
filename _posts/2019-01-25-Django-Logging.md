@@ -7,38 +7,38 @@ This is a short article about django(drf) logging. This are basically what i fig
 
 Before you read this, read about [python logging](https://medium.com/@imnmfotmal/logging-in-python-for-library-6e13b37b1930). In a production system dont use files for logging, it will slow down your system, use either syslog, of elk stack or something.
 
-## The setting
+### The setting
 
 The logs setting has 4 major components. Loggers, Handlers, Filters, Formatters.
 
-### Loggers 
+#### Loggers 
 you can specifiy the loggers name here. only those loggers will be used
 If you are using some custom logger like  `logger = logging.getLogger(__name__)`, then you have to put that name here, only then it will be logged. Eg
-```
+`
   'django': {
           'handlers': ['console', 'logfile'],
           'propagate': True,
           'level': 'INFO'
       },
-```
+`
 Django has some internal logger already defined, which are child of the `django` logger. some examples are `django.request`, `django.server`etc. See more info [here](https://docs.djangoproject.com/en/2.1/topics/logging/#django). If you want to have logs from a specific app. you have just have that app name for logger name. If you dont specify any logger name, all the logs will be considered (see my config).
 
-### Handlers
+#### Handlers
 Each logger has one or mode handler associated. An handler defines where does the logs go. eg files, console, email etc.
 
-### Filters
+#### Filters
 A filter is associated with an handler, the filter can basically choose what all to pass to an handler based on certain conditions, like pass only logs which has a specific string in them.
 
-### Formatters
+#### Formatters
 A handler has a formatter assciated with it. It can be used to specify the exact format of that text of the log record to be rendered.
 
-## My Config
+### My Config
 
 In each python file i have defined `logger = logging.getLogger(__name__)` on top. 
 
 A samlple logging:
 
-```
+```python
 class TestView(views.APIView):
 
     def post(self, request):
