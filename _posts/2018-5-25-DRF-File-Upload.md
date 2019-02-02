@@ -14,7 +14,7 @@ The first method would work out of the box if you have simple fields, but will b
 Below i am providing the implementation for both the cases
 
 Models.py
-```
+```python
     class Posts(models.Model):
         id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
         caption = models.TextField(max_length=1000)
@@ -25,7 +25,7 @@ Models.py
 serializers.py -> no special changes needed, not showing my serializer here as its too lengthy because of the writable ManyToMany Field implimentation.
 
 views.py
-```
+```python
     class PostsViewset(viewsets.ModelViewSet):
         serializer_class = PostsSerializer
         #parser_classes = (MultipartJsonParser, parsers.JSONParser) use this if you have simple key value pair as data with no nested serializers
@@ -36,7 +36,7 @@ views.py
 Now, if you are following the first method and is only sending non-Json data as key value pairs, you don't need a custom parser class. DRF'd MultipartParser will do the job. But for the second case or if you have nested serializers (like i have shown) you will need custom parser as shown below.
 
 utils.py
-```
+```python
     from django.http import QueryDict
     import json
     from rest_framework import parsers
