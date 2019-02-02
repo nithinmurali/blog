@@ -1,4 +1,3 @@
-# Django rest framework file upload with nested serializer
 ### How to upload both file and json using django rest framework in same api endpoint
 
 After spending 1 day on this, I figured out that ...
