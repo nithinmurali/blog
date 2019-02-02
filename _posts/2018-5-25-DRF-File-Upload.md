@@ -7,7 +7,10 @@ After spending 1 day on this, I figured out that ...
 For someone who needs to upload a file and send some data, there is no straight fwd way you can get it to work. There is an [open issue][1] in json api specs for this. One possibility i have seen is to use `multipart/related` as shown [here][2], but i think its very hard to implement it in drf.
 
 Finally what i had implemented was to send the request as `formdata`. You would send each file as _file_ and all other data as text.
-Now for sending the data as text you have two choices. case 1) you can send each data as key value pair or case 2) you can have a single key called _data_ and send the whole json as string in value. 
+Now for sending the data as text you have two choices.
+
+1. you can send each data as key value pair or 
+2. you can have a single key called _data_ and send the whole json as string in value. 
 
 The first method would work out of the box if you have simple fields, but will be a issue if you have nested serializes. The multipart parser wont be able to parse the nested fields.
 
