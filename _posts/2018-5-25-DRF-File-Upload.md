@@ -1,3 +1,5 @@
+I wanted to upload some json data and a file to on an django api (using drf). But sirprisingly all the solutions pointed to first uploading the file and then send the json in two seprate requests. So this is my note on how i worked it out.
+
 ### How to upload both file and json using django rest framework in same api endpoint
 
 After spending 1 day on this, I figured out that ...
