@@ -1,9 +1,11 @@
+# Django logging
 
-First read about python logging.
+
+Before you read this, read about [python logging](https://medium.com/@imnmfotmal/logging-in-python-for-library-6e13b37b1930). In a production system dont use files for logging, it will slow down your system, use either syslog, of elk stack or something.
 
 ## The setting
 
-The logs setting has 4 major components. Loggers, Handlers, Filters, Formatters
+The logs setting has 4 major components. Loggers, Handlers, Filters, Formatters.
 
 ### Loggers 
 you can specifiy the loggers name here. only those loggers will be used
@@ -15,8 +17,7 @@ If you are using some custom logger like  `logger = logging.getLogger(__name__)`
           'level': 'INFO'
       },
 ```
-Django has some internal logger already defined, which are child of the `django` logger. some examples are `django.request`, `django.server`etc. See more info [here](https://docs.djangoproject.com/en/2.1/topics/logging/#django). 
-
+Django has some internal logger already defined, which are child of the `django` logger. some examples are `django.request`, `django.server`etc. See more info [here](https://docs.djangoproject.com/en/2.1/topics/logging/#django). If you want to have logs from a specific app. you have just have that app name for logger name. If you dont specify any logger name, all the logs will be considered (see my config).
 
 ### Handlers
 Each logger has one or mode handler associated. An handler defines where does the logs go. eg files, console, email etc.
@@ -56,10 +57,6 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'django.server': {
-            '()': 'django.utils.log.ServerFormatter',
-            'format': '[%(server_time)s] %(message)s',
-        },
         'verbose': {
             'format': '[%(asctime)s] %(levelname)s %(module)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
         },
@@ -76,11 +73,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'django.server': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'django.server',
-        },
         'logfile': {  # Rotate log file daily, only keep 1 backup
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
@@ -102,11 +94,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
+        }
         'slack_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
