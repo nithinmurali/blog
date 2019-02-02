@@ -14,13 +14,13 @@ The logs setting has 4 major components. Loggers, Handlers, Filters, Formatters.
 #### Loggers 
 you can specifiy the loggers name here. only those loggers will be used
 If you are using some custom logger like  `logger = logging.getLogger(__name__)`, then you have to put that name here, only then it will be logged. Eg
-``
+```python
   'django': {
           'handlers': ['console', 'logfile'],
           'propagate': True,
           'level': 'INFO'
       },
-``
+```
 Django has some internal logger already defined, which are child of the `django` logger. some examples are `django.request`, `django.server`etc. See more info [here](https://docs.djangoproject.com/en/2.1/topics/logging/#django). If you want to have logs from a specific app. you have just have that app name for logger name. If you dont specify any logger name, all the logs will be considered (see my config).
 
 #### Handlers
@@ -56,7 +56,7 @@ class TestView(views.APIView):
 
 settings.py
 
-```
+```python
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
