@@ -1,6 +1,6 @@
 ---
 layout: post
-title: File export in Django and S3
+title: File export in Django using S3
 ---
 
 Hi, 
